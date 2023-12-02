@@ -1,0 +1,27 @@
+.header {
+	height: 65px;
+}
+
+.header__logo {
+	display: flex;
+	flex-direction: row;
+	padding: 11px 0 18px 14px;
+	align-items: center;
+}
+
+.header__image {
+	width: 40px;
+	height: 40px;
+	flex-shrink: 0;
+	padding-right: 8px;
+}
+
+.header__title {
+	color: #FFF;
+	/* font-family: SF Pro Display; */
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	margin: 0;
+}
