@@ -28,15 +28,22 @@ const SearchForm = (props) => {
 			setError(target.validationMessage);
 		}
 	};
+	const searchLocation = (event) => {
+		if (event.key === 'Enter') {
+			onSearch(name);
+		}
+	}
+
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		if(valid){
+		if (valid) {
 			onSearch(name);
 		} else {
 			alert("Город не найден!");
 		}
 	}
+
 
 	return (
 		<div className="search-form" >

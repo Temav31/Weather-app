@@ -62,6 +62,7 @@ function App() {
 			})
 			.catch((err) => {
 				console.log(err);
+				alert("Город не найден!")
 			});
 		// setLocation('')
 		// }
