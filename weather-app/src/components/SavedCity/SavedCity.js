@@ -16,6 +16,9 @@ const SavedCity = (props) => {
 		temperature,
 		pressure,
 		time,
+		onAdd,
+		onDelete,
+		List
 	} = props;
 
 	const [pageWidth, setPageWidth] = React.useState("");
@@ -47,15 +50,20 @@ const SavedCity = (props) => {
 			) : (
 				<></>
 			)} */}
-			{/* Основной бллок */}
+
 			<City
 				city={city}
 				description={description}
 				temperature={temperature}
 				pressure={pressure}
 				time={time}
+				onAdd={onAdd}
+				onDelete={onDelete}
+				List={List}
 			// onOpen={onOpen} 
 			/>
+
+			{/* <button onClick={onDelete}>jdhfgbdhjvbfgjhvb</button> */}
 
 		</>
 	);

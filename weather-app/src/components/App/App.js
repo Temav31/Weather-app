@@ -1,10 +1,11 @@
 import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
 import {
 	Route,
 	Routes,
 	useLocation,
-	useNavigate
+	useNavigate,
+	Navigate
 } from 'react-router-dom';
 import axios from 'axios'
 // компоненты
@@ -12,27 +13,53 @@ import Main from '../Main/Main';
 import SavedCity from '../SavedCity/SavedCity';
 
 import { getWeather } from '../../utils/constant';
-// import SuccessPopup from '../SuccessPopup/SuccessPopup';
-
-// api
-// import MainApi from "../../utils/MainApi"
 
 function App() {
 	const location = useLocation();
 	const navigate = useNavigate();
 
-	const [city, setCity] = useState("Ижевск");
-	const [description, setDescription] = useState("Облачно с прояснениями");
-	const [temperature, setTemperature] = useState("-13°");
-	const [pressure, setPressure] = useState("756 мм рт. ст.");
-	const [time, setTime] = useState();
+	const [city, setCity] = useState("");
+	const [description, setDescription] = useState("");
+	const [temperature, setTemperature] = useState("");
+	const [pressure, setPressure] = useState("");
+	const [time, setTime] = useState("");
 
-	const [nameCity, setNameCity] = useState('Ижевск')
+	const [list, setList] = useState(JSON.parse(localStorage.getItem('city') ?? '[]'));
+	// const [startList, setList] = useState(JSON.parse(localStorage.getItem('city') ?? '[]'));
+	const [first, setFirst] = useState(false);
 
+	const [formBlock, setFormBlock] = useState(false);
+	useLayoutEffect(() => {
+		// console.log("sfdsf");
+		UpdateData();
+	}, [])
+
+	function UpdateData() {
+		list.map((city) => {
+			const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.city}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
+			axios.get(url)
+				.then((res) => {
+					const info = res.data;
+					console.log(info);
+					// температура
+					setTemperature(Math.round((info.main.temp - 32) * 5 / 9));
+					// описание 
+					for (const i of info.weather) {
+						setDescription(getWeather(i.main));
+					}
+					// давление 
+					setPressure(Math.round(info.main.pressure * 0.75));
+				})
+				.catch((err) => {
+					alert("Город не найден!")
+				})
+		})
+	}
 
 	function searchLocation(data) {
-		setNameCity(data);
-
+		setFirst(true);
+		setFormBlock(true);
+		console.log(data)
 		const url = `https://api.openweathermap.org/data/2.5/weather?q=${data}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
 		axios.get(url)
 			.then((res) => {
@@ -41,37 +68,59 @@ function App() {
 				console.log(info);
 				setCity(data);
 				// температура
-				setTemperature(Math.round((info.main.temp -32) * 5 / 9));
-				// setTemperature(info.main.temp);
+				setTemperature(Math.round((info.main.temp - 32) * 5 / 9));
 				// время заката
 				let locTime = new Date(info.sys.sunset * 1000);
 				let minut = locTime.getMinutes();
 				let hour = locTime.getHours();
 				let sunset = hour + ":" + minut;
-				// console.log(sunset)
 				setTime(sunset);
 				// описание 
-				for(const i of info.weather) {
+				for (const i of info.weather) {
 					setDescription(getWeather(i.main));
 				}
 				// давление 
 				setPressure(Math.round(info.main.pressure * 0.75));
-				// console.log(info.weather.1.main)
-				// setDescription(getWeather(info.weather.main))
 				// переход
 				navigate("/save-city");
 			})
 			.catch((err) => {
 				console.log(err);
 				alert("Город не найден!")
-			});
-		// setLocation('')
-		// }
+			})
+			.finally(() => setFormBlock(false));
 	}
-	function handleclick() {
-		setNameCity("Ижевск");
-		searchLocation(nameCity);
+	function handleClick() {
+		searchLocation("Ижевск");
 	}
+
+	function handleClickCity(data) {
+		searchLocation(data);
+	}
+
+	function AddCity() {
+		console.log("сохранение");
+		let addCity = {
+			city: city,
+			temperature: temperature,
+			description: description
+		};
+		const newList = [...list, addCity];
+		setList(newList);
+		localStorage.setItem("city", JSON.stringify(newList));
+		console.log(newList);
+	}
+
+	function DeleteCity() {
+		console.log("удаление");
+		const newList = list.filter((film) => {
+			return !film.city.includes(city);
+		});
+		console.log(newList)
+		setList(newList);
+		localStorage.setItem("city", JSON.stringify(newList));
+	}
+
 	return (
 		<div className={`App 
 		${location === "/save-city" ? "" : ""}
@@ -81,18 +130,28 @@ function App() {
 					path="/"
 					element={<Main
 						onSearch={searchLocation}
-						onClick={handleclick}
+						onClick={handleClick}
+						onFound={handleClickCity}
+						List={list}
+						value={formBlock}
 					/>}
 				/>
 				<Route
 					path="/save-city"
-					element={<SavedCity
-						city={city}
-						description={description}
-						temperature={temperature}
-						pressure={pressure}
-						time={time}
-					/>}
+					element={
+						!first ?
+							<Navigate to="/" />
+							:
+							<SavedCity
+								city={city}
+								description={description}
+								temperature={temperature}
+								pressure={pressure}
+								time={time}
+								onAdd={AddCity}
+								onDelete={DeleteCity}
+								List={list}
+							/>}
 				/>
 			</Routes>
 		</div>

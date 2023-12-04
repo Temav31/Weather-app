@@ -7,38 +7,13 @@ import "./Main.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import Example from "../Example/Example";
+import CityList from "../CityList/CityList";
 
 
-const Main = ({ onSearch, onClick }) => {
-	const city = {
-		name: "sddgdfdffg",
-		src: "Belsdfscxvdgain"
-	};
-	const operatorList = [
-		{
-			name: "Мтс",
-			src: "Mts"
-		},
-		{
-			name: "Мегафон",
-			src: "Megafon"
-		},
-		{
-			name: "Билайн",
-			src: "Belain"
-		}
-	];
-	localStorage.setItem("object", JSON.stringify(operatorList));
+const Main = ({ onSearch, onClick, List, onFound, value }) => {
 
 
 
-	function handleClick() {
-		var object = JSON.parse(localStorage.getItem("object"));
-		const newSavedMovie = [...object, city]
-		console.log(newSavedMovie)
-		localStorage.setItem("object", JSON.stringify(newSavedMovie));
-
-	}
 	return (
 		<>
 			<Header />
@@ -46,11 +21,18 @@ const Main = ({ onSearch, onClick }) => {
 			<main>
 				<SearchForm
 					onSearch={onSearch}
+					value={value}
 				/>
-				<Example
-					onClick={onClick}
-				/>
-				{/* <button onClick={onClick}>jdhfgbdhjvbfgjhvb</button> */}
+				{List.length ? (
+					<CityList
+						onFound={onFound}
+						List={List}
+					/>
+				) : (
+					<Example
+						onClick={onClick}
+					/>
+				)}
 			</main>
 		</>
 	);

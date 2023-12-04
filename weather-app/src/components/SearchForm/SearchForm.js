@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 
 const SearchForm = (props) => {
 	const {
-		onSearch
+		onSearch,
+		value
 	} = props;
 
 	const standartName = /^[А-ЯЁ][а-яё]+(-[А-ЯЁ][а-яё]+)?$/;
@@ -28,11 +29,11 @@ const SearchForm = (props) => {
 			setError(target.validationMessage);
 		}
 	};
-	const searchLocation = (event) => {
-		if (event.key === 'Enter') {
-			onSearch(name);
-		}
-	}
+	// const searchLocation = (event) => {
+	// 	if (event.key === 'Enter') {
+	// 		onSearch(name);
+	// 	}
+	// }
 
 
 	function handleSubmit(e) {
@@ -43,8 +44,6 @@ const SearchForm = (props) => {
 			alert("Город не найден!");
 		}
 	}
-
-
 	return (
 		<div className="search-form" >
 			<form
@@ -60,6 +59,7 @@ const SearchForm = (props) => {
 					name="city"
 					value={name}
 					onChange={handleChange}
+					disabled={value}
 				/>
 				<span className='search-form__error'>
 					{errror}
