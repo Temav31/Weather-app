@@ -1,32 +1,46 @@
 // импорт стилей
 import "./City.css";
 import React, { useState } from "react";
-import Logo from "../../images/logo.svg";
+import { Link } from 'react-router-dom';
+
 import Back from "../../images/big_left.svg";
 import BookmarkActive from "../../images/Bookmark_active.svg";
 import Bookmark from "../../images/Bookmark.svg";
+import Thunderstorm from "../../images/Thunderstorm.svg";
+import Barometer from "../../images/barometer.svg";
+
+import Icon from "../Icon/Icon";
 
 
-const City = () => {
+const City = (props) => {
+	const {
+		city,
+		description,
+		temperature,
+		pressure,
+		time,
+	} = props;
 
-	const [city, setCity] = useState("Москва");
-	const [description, setDescription] = useState("Облачно с прояснениями");
-	const [temperature, setTemperature] = useState("-13°");
-	const [pressure, setPressure] = useState("756 мм рт. ст.");
-	const [time, setTime] = useState("Закат в 18:00");
-	// const value = true;
-	// место
+
+	
 	return (
 		<section className="city" >
-			<img className="city__image-back" src={Back} alt="Лого" />
-			<img className="city__image-bookmark" src={BookmarkActive} alt="Лого" />
+			<Link to="/">
+			<img className="city__image-back" src={Back} alt="Значок назад" />
+			</Link>			
+			<img className="city__image-bookmark" src={BookmarkActive} alt="Значок избранное" />
 			<div className="city__container">
 				<h2 className='city__title'>{city}</h2>
 				<p className='city__text'>{description}</p>
 				<p className='city__temperature'>{temperature}</p>
-				<img />
-				<p className='city__pressure'>Облачно с прояснениями</p>
-				<p className='city__time'>Облачно с прояснениями</p>
+
+				<img className="city__image-weather" src={Thunderstorm} alt="Значок погоды" />
+				{/* <Icon id="logo" className="page-min" /> */}
+				<div className='city__container-pressure'>
+					<img className="city__image-pressure" src={Barometer} alt="Значок барометра" />
+					<p className='city__pressure'>{pressure} мм рс. ст.</p>
+				</div>
+				<p className='city__time'>Закат в {time}</p>
 			</div>
 		</section>
 	);

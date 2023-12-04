@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Arrow from "../../images/Arrow.svg";
 import Bookmark from "../../images/Bookmark.svg";
 
-const Example = () => {
+const Example = ({onClick}) => {
 	// const value = true;
 	// место
 	return (
@@ -15,7 +15,7 @@ const Example = () => {
 				<div className='example__container-city'>
 					<p className="example__text">
 						Начните вводить город, например,
-						<Link className="example__link">Ижевск</Link>
+						<Link className="example__link" to="/save-city" onClick={onClick}>Ижевск</Link>
 					</p>
 				</div>
 			</div>

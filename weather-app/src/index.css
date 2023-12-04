@@ -1,10 +1,10 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts/stylesheet.css);
+
 body {
 	margin: 0;
-	font-family: 'Segoe UI', 'Roboto';
+	font-family: 'SF Pro Display', 'Roboto';
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	background-color: #423e3e;
-  }
-  
-  @import url(./vendor/normalize.css);
-  
+}
