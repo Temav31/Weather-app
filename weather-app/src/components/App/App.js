@@ -32,7 +32,8 @@ function App() {
 
 	function searchLocation(data) {
 		setNameCity(data);
-		const url = `https://api.openweathermap.org/data/2.5/weather?q=${nameCity}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
+
+		const url = `https://api.openweathermap.org/data/2.5/weather?q=${data}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
 		axios.get(url)
 			.then((res) => {
 				// setData(response.data)
