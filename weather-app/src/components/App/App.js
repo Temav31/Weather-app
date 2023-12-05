@@ -12,7 +12,7 @@ import axios from 'axios'
 import Main from '../Main/Main';
 import SavedCity from '../SavedCity/SavedCity';
 
-import { getWeather } from '../../utils/constant';
+import { getWeather, getImage } from '../../utils/constant';
 
 function App() {
 	const location = useLocation();
@@ -28,6 +28,9 @@ function App() {
 	// const [startList, setList] = useState(JSON.parse(localStorage.getItem('city') ?? '[]'));
 	const [first, setFirst] = useState(false);
 
+	const [linkImage, setLinkImage] = useState("");
+	const cat = "Облачно";
+
 	const [formBlock, setFormBlock] = useState(false);
 	useLayoutEffect(() => {
 		// console.log("sfdsf");
@@ -42,13 +45,14 @@ function App() {
 					const info = res.data;
 					console.log(info);
 					// температура
-					setTemperature(Math.round((info.main.temp - 32) * 5 / 9));
+					city.temperature = Math.round((info.main.temp - 32) * 5 / 9);
 					// описание 
 					for (const i of info.weather) {
-						setDescription(getWeather(i.main));
+						city.description = getWeather(i.main);
 					}
-					// давление 
-					setPressure(Math.round(info.main.pressure * 0.75));
+					// картинка 
+					// city.image = getImage(cat);
+					console.log(city)
 				})
 				.catch((err) => {
 					alert("Город не найден!")
@@ -103,7 +107,10 @@ function App() {
 		let addCity = {
 			city: city,
 			temperature: temperature,
-			description: description
+			description: description,
+			// "../../images/Weather/Thunderstorm.svg"
+			image: "../../images/Weather/Thunderstorm.svg"
+			// image: getImage(description)
 		};
 		const newList = [...list, addCity];
 		setList(newList);

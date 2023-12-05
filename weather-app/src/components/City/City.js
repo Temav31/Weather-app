@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Back from "../../images/big_left.svg";
 import BookmarkActive from "../../images/Bookmark_active.svg";
 import Bookmark from "../../images/Bookmark.svg";
-import Thunderstorm from "../../images/Thunderstorm.svg";
+import Thunderstorm from "../../images/Weather/Thunderstorm.svg";
 import Barometer from "../../images/barometer.svg";
 
 import Icon from "../Icon/Icon";
@@ -30,16 +30,16 @@ const City = (props) => {
 			return !film.city.includes(city);
 		});
 		if (data.length === List.length) {
-			console.log("диз");
+			// console.log("диз");
 			setValue(false);
 		} else {
 			setValue(true);
-			console.log("лайк");
+			// console.log("лайк");
 		}
 	});
 
 	function handleClick() {
-		if(value){
+		if (value) {
 			onDelete();
 		} else {
 			onAdd();
@@ -49,13 +49,16 @@ const City = (props) => {
 	return (
 		<section className="city" >
 			<Link to="/">
-				<img className="city__image-back" src={Back} alt="Значок назад" />
+				{/* <img className="city__image-back" src={Back} alt="Значок назад" /> */}
+				<Icon id="big_left" className="city__image-back" />
 			</Link>
-			<button onClick={handleClick}>
+			<button className="city__button" onClick={handleClick} >
 				{value ? (
-					<img className="city__image-bookmark" src={BookmarkActive} alt="Значок избранное" />
+					<Icon id="Bookmark_active" className="city__image-bookmark" />
+					// <img className="city__image-bookmark" src={BookmarkActive} alt="Значок избранное" />
 				) : (
-					<img className="city__image-bookmark" src={Bookmark} alt="Значок избранное" />
+					<Icon id="Bookmark" className="city__image-bookmark" />
+					// <img className="city__image-bookmark" src={Bookmark} alt="Значок избранное" />
 				)}
 			</button>
 			<div className="city__container">
@@ -66,7 +69,7 @@ const City = (props) => {
 				<img className="city__image-weather" src={Thunderstorm} alt="Значок погоды" />
 				{/* <Icon id="logo" className="page-min" /> */}
 				<div className='city__container-pressure'>
-					<img className="city__image-pressure" src={Barometer} alt="Значок барометра" />
+					<Icon id="barometer" className="city__image-pressure" />
 					<p className='city__pressure'>{pressure} мм рс. ст.</p>
 				</div>
 				<p className='city__time'>Закат в {time}</p>

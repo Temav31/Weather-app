@@ -1,7 +1,6 @@
 // импорт стилей
 import "./CityList.css";
 import React from "react";
-import Thunderstorm from "../../images/Thunderstorm.svg";
 
 import CardCity from "../CardCity/CardCity";
 
@@ -18,8 +17,7 @@ const CityList = (props) => {
 			{
 				List.map((city) => (
 					<CardCity
-					name={city.city}
-					temperature={city.temperature} 
+					city={city}
 					onClick={onFound}
 					key={city.city}
 					/>
