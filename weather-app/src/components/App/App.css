@@ -1,12 +1,14 @@
 .App {
 	text-align: center;
 	background: #161B30;
+	width: 1152px;
 	/* width: 375px; */
 	min-height: 100vh;
 }
 
 .App_gradient {
-	background: linear-gradient(180deg, #5A607C 0%, #161B30 49.93%);
+	/* background: linear-gradient(180deg, #5A607C 0%, #161B30 49.93%); */
+	background: radial-gradient(80.36% 80.36% at 50% 0%, #5A607C 0%, #161B30 100%);
 }
 
 .App-logo {

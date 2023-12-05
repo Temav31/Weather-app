@@ -25,15 +25,10 @@ function App() {
 	const [time, setTime] = useState("");
 
 	const [list, setList] = useState(JSON.parse(localStorage.getItem('city') ?? '[]'));
-	// const [startList, setList] = useState(JSON.parse(localStorage.getItem('city') ?? '[]'));
 	const [first, setFirst] = useState(false);
-
-	const [linkImage, setLinkImage] = useState("");
-	const cat = "Облачно";
 
 	const [formBlock, setFormBlock] = useState(false);
 	useLayoutEffect(() => {
-		// console.log("sfdsf");
 		UpdateData();
 	}, [])
 
@@ -50,8 +45,6 @@ function App() {
 					for (const i of info.weather) {
 						city.description = getWeather(i.main);
 					}
-					// картинка 
-					// city.image = getImage(cat);
 					console.log(city)
 				})
 				.catch((err) => {
@@ -108,9 +101,6 @@ function App() {
 			city: city,
 			temperature: temperature,
 			description: description,
-			// "../../images/Weather/Thunderstorm.svg"
-			// image: "../../images/Weather/Thunderstorm.svg"
-			// image: getImage(description)
 		};
 		const newList = [...list, addCity];
 		setList(newList);

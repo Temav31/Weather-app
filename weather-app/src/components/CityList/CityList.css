@@ -1,7 +1,16 @@
-.city-list{
+.city-list {
 	padding: 29px 20px 0;
 	display: grid;
 	grid-column-gap: 19px;
 	grid-row-gap: 20px;
 	grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 1152px) {
+	.city-list {
+		padding: 50px 140px 0;
+		grid-column-gap: 31px;
+		grid-row-gap: 30px;
+		grid-template-columns: repeat(3, 1fr);
+	}
 }

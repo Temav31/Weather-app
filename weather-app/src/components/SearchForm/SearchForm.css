@@ -44,3 +44,14 @@
 	line-height: normal;
 }
 
+@media (min-width: 1152px) {
+	.search-form {
+		padding-top: 81px;
+	}
+	.search-form__input {
+		width: 491px;
+		padding: 16px 0 19px 20px;
+		
+	}
+}
+

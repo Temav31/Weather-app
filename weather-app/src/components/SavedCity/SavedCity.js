@@ -21,13 +21,13 @@ const SavedCity = (props) => {
 		List
 	} = props;
 
-	const [pageWidth, setPageWidth] = React.useState("");
+	const [pageWidth, setPageWidth] = React.useState();
 
 
 	// функция обновления ширины
 	function handleUpdateWidth() {
 		setPageWidth(window.innerWidth);
-		// console.log("hi");
+		console.log(window.innerWidth);
 	}
 	// функция увеличения ширины
 	function handleAddWidth() {
@@ -45,11 +45,11 @@ const SavedCity = (props) => {
 
 	return (
 		<>
-			{/* {pageWidth >= 1280 ? (
+			{pageWidth > 1152 ? (
 				<Header />
 			) : (
 				<></>
-			)} */}
+			)}
 
 			<City
 				city={city}

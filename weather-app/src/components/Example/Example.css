@@ -78,3 +78,13 @@
 	width: 40px;
 	height: 40px;
 }
+
+@media (min-width: 1152px) {
+	.example {
+		margin: 21px auto 0;
+	}
+
+	.example__container-mark {
+		padding-top: 88px;
+	}
+}
