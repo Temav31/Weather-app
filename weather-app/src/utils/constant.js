@@ -1,3 +1,14 @@
+import Thunderstorm from "../images/Weather/Thunderstorm.svg";
+import Drizzle from "../images/Weather/Drizzle.svg";
+import Rain from "../images/Weather/Rain.svg";
+import Snow from "../images/Weather/Snow.svg";
+import Smoke from "../images/Weather/Smoke.svg";
+import Dust from "../images/Weather/Dust.svg";
+import Tornado from "../images/Weather/Tornado.svg";
+import Clear from "../images/Weather/Clear.svg";
+import Clouds from "../images/Weather/Clouds.svg";
+import Squall from "../images/Weather/Squall.svg";
+
 const getWeather = (data) => {
 	if (data === "Thunderstorm") {
 		return `Гроза`;
@@ -27,38 +38,42 @@ const getWeather = (data) => {
 		return `Чистое небо`;
 	} else if (data === "Clouds") {
 		return `Облачно`;
+	} else if (data === "Squall") {
+		return `Ветрено`;
 	}
 };
 const getImage = (data) => {
 	console.log(data)
-	if (data === "Thunderstorm") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Drizzle") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Rain") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Snow") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Mist") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Smoke") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Haze") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Dust") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Fog") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Sand") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Ash") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Tornado") {
-		return `../../images/Weather/Thunderstorm.svg`;
-	} else if (data === "Clear") {
-		return `../../images/Weather/Thunderstorm.svg`;
+	if (data === "Гроза") {
+		return Thunderstorm;
+	} else if (data === "Морось") {
+		return Drizzle;
+	} else if (data === "Дождь") {
+		return Rain;
+	} else if (data === "Снег") {
+		return Snow;
+	} else if (data === "Дымка") {
+		return Smoke;
+	} else if (data === "Смог") {
+		return Smoke;
+	} else if (data === "Мгла") {
+		return Smoke;
+	} else if (data === "Пыль") {
+		return Dust;
+	} else if (data === "Туман") {
+		return Smoke;
+	} else if (data === "Песчано") {
+		return Dust;
+	} else if (data === "Пепел") {
+		return Dust;
+	} else if (data === "Торнадо") {
+		return Tornado;
+	} else if (data === "Чистое небо") {
+		return Clear;
 	} else if (data === "Облачно") {
-		return "https://yandex.ru/images/search?pos=2&nl=1&img_url=https%3A%2F%2Fwww.myrtlebeach.com%2Fmedia%2Fapp%2FThinkstockPhotos-533645537.jpg&text=%D0%97%D0%B0%D0%B2%D1%82%D1%80%D0%B0%D0%BA&rpt=simage&lr=44&source=morda";
+		return Clouds;
+	} else if (data === "Ветрено") {
+		return Squall;
 	}
 };
 

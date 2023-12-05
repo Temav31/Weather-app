@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
 import Arrow from "../../images/Arrow.svg";
 import Bookmark from "../../images/Bookmark.svg";
 
-const Example = ({onClick}) => {
+import Icon from "../Icon/Icon";
+
+const Example = ({ onClick }) => {
 	// const value = true;
 	// место
 	return (
 		<div className="example" >
 			<div className="example__container">
-				<img className="example__image-arrow" src={Arrow} alt="Значок стрелка" />
+				<Icon id="Arrow" className="example__image-arrow" text="Значок стрелка" />
 				<div className='example__container-city'>
 					<p className="example__text">
 						Начните вводить город, например,
@@ -20,10 +22,12 @@ const Example = ({onClick}) => {
 				</div>
 			</div>
 			<div className="example__container-mark">
-					<p className="example__text-description">Используйте значок «закладки»,
-						чтобы закрепить город на главной</p>
-					<img className="example__image-bookmark" src={Bookmark} alt="Значок избранное" />
-				</div>
+				<p className="example__text-description">Используйте значок «закладки»,
+					чтобы закрепить город на главной</p>
+				<Icon id="Bookmark" className="example__image-bookmark" text="Значок избранное" />
+
+				{/* <img className="example__image-bookmark" src={Bookmark} alt="Значок избранное" /> */}
+			</div>
 		</div>
 	);
 };

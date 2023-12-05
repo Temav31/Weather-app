@@ -109,7 +109,7 @@ function App() {
 			temperature: temperature,
 			description: description,
 			// "../../images/Weather/Thunderstorm.svg"
-			image: "../../images/Weather/Thunderstorm.svg"
+			// image: "../../images/Weather/Thunderstorm.svg"
 			// image: getImage(description)
 		};
 		const newList = [...list, addCity];

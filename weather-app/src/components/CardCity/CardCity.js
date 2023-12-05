@@ -14,19 +14,14 @@ const CardCity = (props) => {
 	} = props;
 	
 	const [linkImage, setLinkImage] = useState("");
-	const cat = "Thunderstorm";
 
 	useLayoutEffect(() => {
-		// console.log(getImage(cat))
-		// setLinkImage(getImage(cat));
-		setLinkImage("../../images/Weather/Thunderstorm.svg");
-		
-	})
-	// const linkImage = "../../images/Weather/"+{cat}+".svg";
+		setLinkImage(getImage(city.description));
+	});
 
 	
 	function handleClick() {
-		console.log(city.image)
+		console.log(city.description)
 		// console.log(linkImage)
 		onClick(city.city);
 	}
@@ -36,7 +31,7 @@ const CardCity = (props) => {
 		<button className="card-city" onClick={handleClick}>
 			<h3 className='card-city__title'>{city.city}</h3>
 			<p className='card-city__text'>{city.temperature}°</p>
-			<img className='card-city__image' src={city.image} alt='Значок погоды' />
+			<img className='card-city__image' src={linkImage} alt='Значок погоды' />
 		</button>
 	);
 };

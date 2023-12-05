@@ -1,16 +1,11 @@
 // импорт стилей
 import "./City.css";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect } from "react";
 import { Link } from 'react-router-dom';
 
-import Back from "../../images/big_left.svg";
-import BookmarkActive from "../../images/Bookmark_active.svg";
-import Bookmark from "../../images/Bookmark.svg";
-import Thunderstorm from "../../images/Weather/Thunderstorm.svg";
-import Barometer from "../../images/barometer.svg";
+import { getImage } from '../../utils/constant';
 
 import Icon from "../Icon/Icon";
-
 
 const City = (props) => {
 	const {
@@ -23,6 +18,12 @@ const City = (props) => {
 		onDelete,
 		List
 	} = props;
+
+	const [linkImage, setLinkImage] = useState("");
+
+	useLayoutEffect(() => {
+		setLinkImage(getImage(description));
+	});
 
 	const [value, setValue] = useState(false);
 	useEffect(() => {
@@ -49,27 +50,22 @@ const City = (props) => {
 	return (
 		<section className="city" >
 			<Link to="/">
-				{/* <img className="city__image-back" src={Back} alt="Значок назад" /> */}
-				<Icon id="big_left" className="city__image-back" />
+				<Icon id="big_left" className="city__image-back" text="Значок назад" />
 			</Link>
 			<button className="city__button" onClick={handleClick} >
 				{value ? (
-					<Icon id="Bookmark_active" className="city__image-bookmark" />
-					// <img className="city__image-bookmark" src={BookmarkActive} alt="Значок избранное" />
+					<Icon id="Bookmark_active" className="city__image-bookmark" text="Значок избранное" />
 				) : (
-					<Icon id="Bookmark" className="city__image-bookmark" />
-					// <img className="city__image-bookmark" src={Bookmark} alt="Значок избранное" />
+					<Icon id="Bookmark" className="city__image-bookmark" text="Значок избранное" />
 				)}
 			</button>
 			<div className="city__container">
 				<h2 className='city__title'>{city}</h2>
 				<p className='city__text'>{description}</p>
 				<p className='city__temperature'>{temperature}°</p>
-
-				<img className="city__image-weather" src={Thunderstorm} alt="Значок погоды" />
-				{/* <Icon id="logo" className="page-min" /> */}
+				<img className="city__image-weather" src={linkImage} alt="Значок погоды" />
 				<div className='city__container-pressure'>
-					<Icon id="barometer" className="city__image-pressure" />
+					<Icon id="barometer" className="city__image-pressure"  text="Значок барометр"/>
 					<p className='city__pressure'>{pressure} мм рс. ст.</p>
 				</div>
 				<p className='city__time'>Закат в {time}</p>
