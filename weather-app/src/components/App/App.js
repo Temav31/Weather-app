@@ -1,5 +1,5 @@
 import './App.css';
-import { useEffect, useState, useLayoutEffect } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import {
 	Route,
 	Routes,
@@ -12,7 +12,7 @@ import axios from 'axios'
 import Main from '../Main/Main';
 import SavedCity from '../SavedCity/SavedCity';
 
-import { getWeather, getImage } from '../../utils/constant';
+import { getWeather } from '../../utils/constant';
 
 function App() {
 	const location = useLocation();

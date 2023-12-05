@@ -2,8 +2,6 @@
 import "./Example.css";
 import React from "react";
 import { Link } from 'react-router-dom';
-import Arrow from "../../images/Arrow.svg";
-import Bookmark from "../../images/Bookmark.svg";
 
 import Icon from "../Icon/Icon";
 

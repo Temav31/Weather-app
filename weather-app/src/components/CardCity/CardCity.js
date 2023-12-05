@@ -1,6 +1,5 @@
 import "./CardCity.css";
-import React, {useState, useEffect, useLayoutEffect} from "react";
-import Thunderstorm from "../../images/Weather/Thunderstorm.svg";
+import React, {useState, useLayoutEffect} from "react";
 
 import { getImage } from '../../utils/constant';
 
