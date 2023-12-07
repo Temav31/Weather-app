@@ -28,38 +28,51 @@ function App() {
 	const [first, setFirst] = useState(false);
 
 	const [formBlock, setFormBlock] = useState(false);
-	useEffect(() => {
+	useLayoutEffect(() => {
 		UpdateData();
-	}, )
+		// localStorage.clear();
+	}, [])
 
-	function UpdateData() {
-		const newList = list.map((city) => {
+	async function UpdateData() {
+		let newList = [];
+		const mas = list;
+		list.map((city) => {
 			const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.city}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
 			axios.get(url)
 				.then((res) => {
 					const info = res.data;
-					console.log(info);
+					let temperature;
+					let description;
 					// температура
-					city.temperature = Math.round((info.main.temp - 32) * 5 / 9);
+					temperature = Math.round((info.main.temp - 32) * 5 / 9);
 					// описание 
 					for (const i of info.weather) {
-						city.description = getWeather(i.main);
+						description = getWeather(i.main);
 					}
-					console.log(city);
-					loc
+					let addCity = {
+						city: city,
+						temperature: temperature,
+						description: description,
+					};
+					newList = [...newList, addCity];
+					// console.log(city)
 				})
 				.catch((err) => {
 					alert("Город не найден!")
 				})
 		});
-		setCity(newList);
-		localStorage.setItem("city", JSON.stringify(newList));
+		// setTimeout(() => {
+		// 	console.log(newList)
+		// }, 1000);
 	}
+	// function Save(newList) {
+	// 	// localStorage.setItem("city", JSON.stringify(newList));
+	// }
 
 	function searchLocation(data) {
 		setFirst(true);
 		setFormBlock(true);
-		console.log(data)
+		// console.log(data)
 		const url = `https://api.openweathermap.org/data/2.5/weather?q=${data}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
 		axios.get(url)
 			.then((res) => {
@@ -108,7 +121,7 @@ function App() {
 		const newList = [...list, addCity];
 		setList(newList);
 		localStorage.setItem("city", JSON.stringify(newList));
-		console.log(newList);
+		// console.log(newList);
 	}
 
 	function DeleteCity() {
@@ -116,7 +129,7 @@ function App() {
 		const newList = list.filter((film) => {
 			return !film.city.includes(city);
 		});
-		console.log(newList)
+		// console.log(newList)
 		setList(newList);
 		localStorage.setItem("city", JSON.stringify(newList));
 	}

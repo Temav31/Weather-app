@@ -10,8 +10,7 @@ const CityList = (props) => {
 		List,
 		onFound
 	} = props;
-	// const value = true;
-	// место
+
 	return (
 		<section className="city-list">
 			{

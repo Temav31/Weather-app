@@ -43,7 +43,6 @@ const getWeather = (data) => {
 	}
 };
 const getImage = (data) => {
-	console.log(data)
 	if (data === "Гроза") {
 		return Thunderstorm;
 	} else if (data === "Морось") {
