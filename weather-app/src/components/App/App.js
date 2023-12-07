@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useLayoutEffect } from 'react';
+import { useState, useLayoutEffect, useEffect } from 'react';
 import {
 	Route,
 	Routes,
@@ -28,9 +28,9 @@ function App() {
 	const [first, setFirst] = useState(false);
 
 	const [formBlock, setFormBlock] = useState(false);
-	useLayoutEffect(() => {
+	useEffect(() => {
 		UpdateData();
-	}, [])
+	}, )
 
 	function UpdateData() {
 		const newList = list.map((city) => {
