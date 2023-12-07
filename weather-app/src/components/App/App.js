@@ -33,7 +33,7 @@ function App() {
 	}, [])
 
 	function UpdateData() {
-		list.map((city) => {
+		const newList = list.map((city) => {
 			const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.city}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
 			axios.get(url)
 				.then((res) => {
@@ -45,12 +45,15 @@ function App() {
 					for (const i of info.weather) {
 						city.description = getWeather(i.main);
 					}
-					console.log(city)
+					console.log(city);
+					loc
 				})
 				.catch((err) => {
 					alert("Город не найден!")
 				})
-		})
+		});
+		setCity(newList);
+		localStorage.setItem("city", JSON.stringify(newList));
 	}
 
 	function searchLocation(data) {
