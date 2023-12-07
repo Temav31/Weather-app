@@ -36,7 +36,7 @@ function App() {
 	async function UpdateData() {
 		let newList = [];
 		const mas = list;
-		list.map((city) => {
+		mas.map((city) => {
 			const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.city}&units=imperial&appid=895284fb2d2c50a520ea537456963d9c`
 			axios.get(url)
 				.then((res) => {
@@ -50,24 +50,19 @@ function App() {
 						description = getWeather(i.main);
 					}
 					let addCity = {
-						city: city,
+						city: city.city,
 						temperature: temperature,
 						description: description,
 					};
 					newList = [...newList, addCity];
-					// console.log(city)
+					// console.log(newList)
+					localStorage.setItem("city", JSON.stringify(newList));
 				})
 				.catch((err) => {
 					alert("Город не найден!")
 				})
 		});
-		// setTimeout(() => {
-		// 	console.log(newList)
-		// }, 1000);
 	}
-	// function Save(newList) {
-	// 	// localStorage.setItem("city", JSON.stringify(newList));
-	// }
 
 	function searchLocation(data) {
 		setFirst(true);
@@ -112,7 +107,7 @@ function App() {
 	}
 
 	function AddCity() {
-		console.log("сохранение");
+		// console.log("сохранение");
 		let addCity = {
 			city: city,
 			temperature: temperature,
@@ -125,7 +120,7 @@ function App() {
 	}
 
 	function DeleteCity() {
-		console.log("удаление");
+		// console.log("удаление");
 		const newList = list.filter((film) => {
 			return !film.city.includes(city);
 		});
